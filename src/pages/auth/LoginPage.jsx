@@ -41,7 +41,7 @@ export default function LoginPage() {
         <Card sx={{ boxShadow: 3 }}>
           <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
             <Typography variant="h1" align="center" sx={{ mb: 1 }}>
-              Best Deal Guidance
+              Dealer Assistant
             </Typography>
             <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 4 }}>
               GM Dealership Assistant

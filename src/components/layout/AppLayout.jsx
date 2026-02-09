@@ -18,6 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import HistoryIcon from '@mui/icons-material/History';
+import gmLogo from '../../img/gm-logo-white.svg';
 
 export default function AppLayout() {
   const navigate = useNavigate();
@@ -55,12 +56,16 @@ export default function AppLayout() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ bgcolor: '#000000' }}>
         <Toolbar>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexGrow: 1 }}
-          >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexGrow: 1 }}>
+            <img 
+              src={gmLogo} 
+              alt="GM Logo" 
+              style={{ height: 32, width: 'auto' }}
+            />
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              Deal Guidance
+              Dealer Assistant
             </Typography>
             {!isMobile && (
               <Typography variant="caption" color="inherit" sx={{ opacity: 0.8 }}>
@@ -79,7 +84,7 @@ export default function AppLayout() {
                     key={item.path}
                     onClick={() => navigate(item.path)}
                     sx={{
-                      color: isActive ? 'warning.main' : 'inherit',
+                      color: isActive ? 'primary.main' : 'inherit',
                       textTransform: 'none',
                       display: 'flex',
                       gap: 0.5,
