@@ -19,6 +19,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import HistoryIcon from '@mui/icons-material/History';
 import gmLogo from '../../img/gm-logo-white.svg';
+import sarahProfile from '../../img/profile-sarah.png';
 
 export default function AppLayout() {
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ export default function AppLayout() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Avatar
               sx={{ width: 32, height: 32 }}
-              src={user?.photoUrl}
+              src={user?.name === 'Sarah Johnson' ? sarahProfile : user?.photoUrl}
               alt={user?.name}
             />
             <IconButton
