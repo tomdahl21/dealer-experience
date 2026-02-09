@@ -1,0 +1,79 @@
+[
+  {
+    "vin": "1G1YY26E965105305",
+    "stockNumber": "T23-1042",
+    "year": 2023,
+    "make": "Chevrolet",
+    "model": "Tahoe",
+    "trim": "Premier 4WD",
+    "color": "Summit White",
+    "mileage": 12,
+    "msrp": 52495,
+    "invoice": 48200,
+    "currentPrice": 51200,
+    "targetPrice": 49500,
+    "minimumPrice": 48800,
+    "daysOnLot": 67,
+    "incentives": 2200,
+    "incentiveDetails": [
+      { "name": "Factory-to-Dealer Cash", "amount": 1500 },
+      { "name": "Holdback", "amount": 700 }
+    ],
+    "similarInInventory": 8,
+    "marketPosition": -3,
+    "safetyFeatures": [
+      "Blind Spot Monitoring",
+      "Automatic Emergency Braking",
+      "Lane Keep Assist",
+      "Adaptive Cruise Control"
+    ],
+    "keyFeatures": [
+      "Leather Seats",
+      "Panoramic Sunroof",
+      "Captain's Chairs",
+      "Bose Premium Audio"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800",
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"
+    ],
+    "competitorInventory": 12
+  },
+  {
+    "vin": "3GNAXKEV0PL123456",
+    "stockNumber": "S23-2019",
+    "year": 2023,
+    "make": "Chevrolet",
+    "model": "Silverado 1500",
+    "trim": "LTZ Crew Cab 4WD",
+    "color": "Black",
+    "mileage": 8,
+    "msrp": 58995,
+    "invoice": 54200,
+    "currentPrice": 57500,
+    "targetPrice": 55800,
+    "minimumPrice": 54900,
+    "daysOnLot": 23,
+    "incentives": 1500,
+    "incentiveDetails": [
+      { "name": "Factory-to-Dealer Cash", "amount": 1000 },
+      { "name": "Holdback", "amount": 500 }
+    ],
+    "similarInInventory": 15,
+    "marketPosition": 2,
+    "safetyFeatures": [
+      "Blind Spot Monitoring",
+      "Rear Cross Traffic Alert"
+    ],
+    "keyFeatures": [
+      "Heated Seats",
+      "Max Trailering Package",
+      "Spray-In Bed Liner",
+      "20-inch Wheels"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800"
+    ],
+    "competitorInventory": 8
+  }
+]
