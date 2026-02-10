@@ -15,20 +15,26 @@ export default function HomePage() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
+  const isManager = user?.role === 'manager';
+  const scanPath = isManager ? '/manager/scan' : '/associate/scan';
+  const dealsPath = isManager ? '/manager/approvals' : '/associate/my-deals';
+
   return (
     <Box>
       <Typography variant="h2" gutterBottom>
         Welcome, {user?.name}!
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-        Scan a vehicle VIN to get intelligent deal guidance
+        {isManager 
+          ? 'Manage team performance and inventory strategy'
+          : 'Scan a vehicle VIN to get intelligent deal guidance'}
       </Typography>
 
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <Card sx={{ height: '100%' }}>
             <CardActionArea
-              onClick={() => navigate('/scan')}
+              onClick={() => navigate(scanPath)}
               sx={{ height: '100%' }}
             >
               <CardContent
@@ -52,7 +58,9 @@ export default function HomePage() {
                   Scan VIN
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Use camera to scan or enter manually
+                  {isManager 
+                    ? 'Scan vehicles for team insights' 
+                    : 'Use camera to scan or enter manually'}
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -62,7 +70,7 @@ export default function HomePage() {
         <Grid item xs={12} sm={6}>
           <Card sx={{ height: '100%' }}>
             <CardActionArea
-              onClick={() => navigate('/my-deals')}
+              onClick={() => navigate(dealsPath)}
               sx={{ height: '100%' }}
             >
               <CardContent
@@ -83,10 +91,12 @@ export default function HomePage() {
                   }}
                 />
                 <Typography variant="h3" gutterBottom>
-                  My Deals
+                  {isManager ? 'Approvals' : 'My Deals'}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  View your deal history
+                  {isManager 
+                    ? 'Review and approve team deals' 
+                    : 'View your deal history'}
                 </Typography>
               </CardContent>
             </CardActionArea>

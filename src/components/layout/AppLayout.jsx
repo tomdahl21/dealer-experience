@@ -39,20 +39,21 @@ export default function AppLayout() {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
   };
 
   const isSalesView = user?.role === 'sales';
   const navItems = isSalesView
     ? [
-        { path: '/', label: 'Home', icon: HomeIcon },
-        { path: '/scan', label: 'Scan VIN', icon: CameraAltIcon },
-        { path: '/my-deals', label: 'My Deals', icon: HistoryIcon },
+        { path: '/associate', label: 'Home', icon: HomeIcon },
+        { path: '/associate/scan', label: 'Scan VIN', icon: CameraAltIcon },
+        { path: '/associate/my-deals', label: 'My Deals', icon: HistoryIcon },
       ]
     : [
         { path: '/manager', label: 'Dashboard', icon: HomeIcon },
         { path: '/manager/approvals', label: 'Approvals', icon: CameraAltIcon },
         { path: '/manager/inventory', label: 'Inventory', icon: HistoryIcon },
+        { path: '/manager/scan', label: 'Scan VIN', icon: CameraAltIcon },
       ];
 
   return (

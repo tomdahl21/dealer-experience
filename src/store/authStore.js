@@ -19,6 +19,35 @@ export const useAuthStore = create((set) => ({
     }
   },
 
+  loginAsRole: async (role) => {
+    set({ isLoading: true, error: null });
+    try {
+      // Mock user based on role
+      const mockUsers = {
+        sales: {
+          email: 'sarah@dealership.com',
+          password: 'demo123',
+        },
+        manager: {
+          email: 'mike@dealership.com',
+          password: 'demo123',
+        },
+      };
+
+      const credentials = mockUsers[role];
+      if (!credentials) {
+        throw new Error('Invalid role');
+      }
+
+      const user = await authService.login(credentials.email, credentials.password);
+      set({ user, isAuthenticated: true, isLoading: false });
+      return { success: true };
+    } catch (error) {
+      set({ error: error.message, isLoading: false });
+      return { success: false, error: error.message };
+    }
+  },
+
   logout: () => {
     authService.logout();
     set({ user: null, isAuthenticated: false, error: null });

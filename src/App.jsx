@@ -5,6 +5,7 @@ import { useAuthStore } from './store/authStore';
 
 // Pages
 import LoginPage from './pages/auth/LoginPage';
+import RoleSelectionPage from './pages/auth/RoleSelectionPage';
 import HomePage from './pages/sales/HomePage';
 import ScanPage from './pages/sales/ScanPage';
 import VehicleDetailPage from './pages/sales/VehicleDetailPage';
@@ -21,11 +22,15 @@ function ProtectedRoute({ children, allowedRoles }) {
   const { user, isAuthenticated } = useAuthStore();
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {
-    return <Navigate to="/" replace />;
+    // Redirect to correct role's home page
+    if (user?.role === 'manager') {
+      return <Navigate to="/manager" replace />;
+    }
+    return <Navigate to="/associate" replace />;
   }
 
   return children;
@@ -37,11 +42,15 @@ function App() {
       <CssBaseline />
       <Router>
         <Routes>
+          {/* Role Selection - Landing Page */}
+          <Route path="/" element={<RoleSelectionPage />} />
+          
+          {/* Optional: Keep traditional login */}
           <Route path="/login" element={<LoginPage />} />
           
-          {/* Sales Person Routes */}
+          {/* Sales Associate Routes */}
           <Route
-            path="/"
+            path="/associate"
             element={
               <ProtectedRoute allowedRoles={['sales']}>
                 <AppLayout />
@@ -66,6 +75,8 @@ function App() {
             <Route index element={<DashboardPage />} />
             <Route path="approvals" element={<ApprovalsPage />} />
             <Route path="inventory" element={<InventoryPage />} />
+            <Route path="scan" element={<ScanPage />} />
+            <Route path="vehicle/:vin" element={<VehicleDetailPage />} />
           </Route>
 
           {/* Fallback */}

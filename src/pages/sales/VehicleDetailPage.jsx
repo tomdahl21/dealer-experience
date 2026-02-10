@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -16,12 +16,18 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useVehicleStore } from '../../store/vehicleStore';
+import { useAuthStore } from '../../store/authStore';
 
 export default function VehicleDetailPage() {
   const { vin } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { vehicle, loading, findVehicleByVIN } = useVehicleStore();
+  const { user } = useAuthStore();
   const [dealScore] = useState(85); // Mock deal score - will implement calculator
+
+  // Determine correct scan path based on role
+  const scanPath = location.pathname.startsWith('/manager') ? '/manager/scan' : '/associate/scan';
 
   useEffect(() => {
     if (vin) {
@@ -43,7 +49,7 @@ export default function VehicleDetailPage() {
         <Typography variant="h3" color="error">
           Vehicle not found
         </Typography>
-        <Button onClick={() => navigate('/scan')} sx={{ mt: 2 }}>
+        <Button onClick={() => navigate(scanPath)} sx={{ mt: 2 }}>
           <ArrowBackIcon sx={{ mr: 1 }} />
           Back to Scan
         </Button>
@@ -60,7 +66,7 @@ export default function VehicleDetailPage() {
   return (
     <Box>
       <Button
-        onClick={() => navigate('/scan')}
+        onClick={() => navigate(scanPath)}
         startIcon={<ArrowBackIcon />}
         sx={{ mb: 2 }}
       >

@@ -23,7 +23,12 @@ export default function LoginPage() {
     e.preventDefault();
     const result = await login(email, password);
     if (result.success) {
-      navigate('/');
+      const { user } = useAuthStore.getState();
+      if (user?.role === 'manager') {
+        navigate('/manager');
+      } else {
+        navigate('/associate');
+      }
     }
   };
 

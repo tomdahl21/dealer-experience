@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { useVehicleStore } from '../../store/vehicleStore';
+import { useAuthStore } from '../../store/authStore';
 
 const SAMPLE_VINS = [
   { vin: '1G1YY26E965105305', label: '2023 Chevrolet Tahoe' },
@@ -20,10 +21,20 @@ const SAMPLE_VINS = [
 
 export default function ScanPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { findVehicleByVIN, error } = useVehicleStore();
+  const { user } = useAuthStore();
   const [vin, setVin] = useState('');
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState('');
+
+  // Determine the correct path based on current location
+  const getVehiclePath = (vin) => {
+    if (location.pathname.startsWith('/manager')) {
+      return `/manager/vehicle/${vin}`;
+    }
+    return `/associate/vehicle/${vin}`;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +54,7 @@ export default function ScanPage() {
     try {
       const vehicle = await findVehicleByVIN(vin);
       if (vehicle) {
-        navigate(`/vehicle/${vin}`);
+        navigate(getVehiclePath(vin));
       } else {
         setLocalError('Vehicle not found in inventory');
       }
@@ -61,7 +72,7 @@ export default function ScanPage() {
     try {
       const vehicle = await findVehicleByVIN(sampleVin);
       if (vehicle) {
-        navigate(`/vehicle/${sampleVin}`);
+        navigate(getVehiclePath(sampleVin));
       } else {
         setLocalError('Vehicle not found in inventory');
       }
