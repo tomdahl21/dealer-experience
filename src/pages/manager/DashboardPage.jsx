@@ -1,5 +1,6 @@
-import { Box, Typography, Grid, Card, CardContent, Avatar, Chip, LinearProgress, Stack, Divider, Select, MenuItem, FormControl, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Box, Typography, Grid, Card, CardContent, Avatar, Chip, LinearProgress, Stack, Divider, Select, MenuItem, FormControl, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Alert } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   TrendingUp,
   TrendingDown,
@@ -9,6 +10,10 @@ import {
   PendingActions,
   DirectionsCar,
   Speed,
+  Check,
+  Close,
+  Warning,
+  Visibility,
 } from '@mui/icons-material';
 import {
   BarChart,
@@ -142,6 +147,50 @@ const getMockDataForRange = (range) => {
       { status: 'Pending', count: 15, color: '#ff9800' },
       { status: 'In Progress', count: 23, color: '#1565c0' },
     ],
+    pendingApprovals: [
+      {
+        id: 1,
+        salesPerson: 'Sarah Johnson',
+        customer: 'Robert Martinez',
+        vehicle: '2023 Chevrolet Tahoe',
+        vin: '1G1YY26E965105305',
+        msrp: 62995,
+        proposedPrice: 59500,
+        discount: 3495,
+        margin: 2850,
+        daysOnLot: 67,
+        reason: 'Customer loyalty + competitive offer',
+        timestamp: '8 min ago',
+      },
+      {
+        id: 2,
+        salesPerson: 'Mike Chen',
+        customer: 'Lisa Thompson',
+        vehicle: '2024 GMC Sierra 1500',
+        vin: '3GNAXKEV0PL123456',
+        msrp: 54500,
+        proposedPrice: 52000,
+        discount: 2500,
+        margin: 3200,
+        daysOnLot: 45,
+        reason: 'Trade-in value adjustment',
+        timestamp: '23 min ago',
+      },
+      {
+        id: 3,
+        salesPerson: 'Jessica Torres',
+        customer: 'David Chen',
+        vehicle: '2023 Cadillac XT5',
+        vin: '1GYKNCRS5PZ123789',
+        msrp: 48900,
+        proposedPrice: 46200,
+        discount: 2700,
+        margin: 2100,
+        daysOnLot: 89,
+        reason: 'Aging inventory - high days on lot',
+        timestamp: '1 hour ago',
+      },
+    ],
   };
 };
 
@@ -217,8 +266,23 @@ function KPICard({ title, value, change, icon: Icon, prefix = '', suffix = '' })
 
 export default function DashboardPage() {
   const [dateRange, setDateRange] = useState('7days');
+  const navigate = useNavigate();
   const mockData = getMockDataForRange(dateRange);
-  const { kpis, teamPerformance, salesByDay, inventoryByBrand, dealStatus } = mockData;
+  const { kpis, teamPerformance, salesByDay, inventoryByBrand, dealStatus, pendingApprovals } = mockData;
+
+  const handleApprove = (approvalId) => {
+    console.log('Approved:', approvalId);
+    // In real app, would call API to approve
+  };
+
+  const handleReject = (approvalId) => {
+    console.log('Rejected:', approvalId);
+    // In real app, would call API to reject
+  };
+
+  const handleViewDeal = (vin) => {
+    navigate(`/manager/vehicle/${vin}`);
+  };
 
   return (
     <Box>
@@ -296,6 +360,113 @@ export default function DashboardPage() {
             icon={PendingActions}
           />
         </Grid>
+      </Grid>
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        {/* Pending Approvals */}
+        {pendingApprovals && pendingApprovals.length > 0 && (
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <PendingActions sx={{ color: '#1565c0', fontSize: 28 }} />
+                    <Typography variant="h4" fontWeight={700}>
+                      Pending Approvals
+                    </Typography>
+                  </Box>
+                  <Chip
+                    label={`${pendingApprovals.length} pending`}
+                    sx={{ bgcolor: '#1565c0', color: 'white', fontWeight: 600 }}
+                  />
+                </Box>
+                
+                <Stack spacing={2}>
+                  {pendingApprovals.map((approval) => (
+                    <Card
+                      key={approval.id}
+                      variant="outlined"
+                      sx={{
+                        '&:hover': {
+                          boxShadow: 2,
+                          borderColor: '#1565c0',
+                        },
+                        transition: 'all 0.2s',
+                      }}
+                    >
+                      <CardContent>
+                        <Grid container spacing={2} alignItems="center">
+                          {/* Left: Basic Info */}
+                          <Grid item xs={12} sm={6}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                              <Typography variant="caption" color="text.secondary">
+                                {approval.timestamp}
+                              </Typography>
+                            </Box>
+                            <Typography variant="h6" fontWeight={600}>
+                              {approval.vehicle}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {approval.salesPerson} • {approval.customer}
+                            </Typography>
+                          </Grid>
+
+                          {/* Middle: Price Info */}
+                          <Grid item xs={12} sm={4}>
+                            <Grid container spacing={1}>
+                              <Grid item xs={6}>
+                                <Typography variant="caption" color="text.secondary">
+                                  Proposed
+                                </Typography>
+                                <Typography variant="h6" fontWeight={600}>
+                                  ${approval.proposedPrice.toLocaleString()}
+                                </Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography variant="caption" color="text.secondary">
+                                  Margin
+                                </Typography>
+                                <Typography
+                                  variant="h6"
+                                  sx={{ color: approval.margin >= 3000 ? '#4caf50' : '#ff9800' }}
+                                  fontWeight={600}
+                                >
+                                  ${approval.margin.toLocaleString()}
+                                </Typography>
+                              </Grid>
+                            </Grid>
+                            <Chip
+                              label={`${approval.daysOnLot} days on lot`}
+                              size="small"
+                              variant="outlined"
+                              sx={{ mt: 1 }}
+                            />
+                          </Grid>
+
+                          {/* Right: Actions */}
+                          <Grid item xs={12} sm={2}>
+                            <Button
+                              variant="contained"
+                              fullWidth
+                              startIcon={<Visibility />}
+                              onClick={() => handleViewDeal(approval.vin)}
+                              sx={{
+                                bgcolor: '#1565c0',
+                                '&:hover': { bgcolor: '#0d47a1' },
+                              }}
+                            >
+                              Review
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+        )}
       </Grid>
 
       <Grid container spacing={3}>

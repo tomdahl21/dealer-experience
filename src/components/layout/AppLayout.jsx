@@ -51,7 +51,6 @@ export default function AppLayout() {
       ]
     : [
         { path: '/manager', label: 'Dashboard', icon: HomeIcon },
-        { path: '/manager/approvals', label: 'Approvals', icon: CameraAltIcon },
         { path: '/manager/inventory', label: 'Inventory', icon: HistoryIcon },
         { path: '/manager/scan', label: 'Scan VIN', icon: CameraAltIcon },
       ];
