@@ -1,0 +1,362 @@
+[
+  {
+    "vin": "1G1YYRS7P66EGSDXY",
+    "stockNumber": "CH1000",
+    "brand": "Chevrolet",
+    "model": "Tahoe",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/tahoe-white.jpg"
+  },
+  {
+    "vin": "1G1YYRNYZADXTMHDZ",
+    "stockNumber": "CH1001",
+    "brand": "Chevrolet",
+    "model": "Tahoe",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/tahoe-white.jpg"
+  },
+  {
+    "vin": "1G1YYRUXK2S3GNRY4",
+    "stockNumber": "CH1002",
+    "brand": "Chevrolet",
+    "model": "Tahoe",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/tahoe-white.jpg"
+  },
+  {
+    "vin": "1G1AKRYP860JG4HSD",
+    "stockNumber": "CH1003",
+    "brand": "Chevrolet",
+    "model": "Silverado 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/silverado-1500-white.jpg"
+  },
+  {
+    "vin": "1G1AKRDW84WADST4R",
+    "stockNumber": "CH1004",
+    "brand": "Chevrolet",
+    "model": "Silverado 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/silverado-1500-white.jpg"
+  },
+  {
+    "vin": "1G1AKR8M5ZN20L60W",
+    "stockNumber": "CH1005",
+    "brand": "Chevrolet",
+    "model": "Silverado 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/silverado-1500-white.jpg"
+  },
+  {
+    "vin": "1G1EVREKY22Y9CNCK",
+    "stockNumber": "CH1006",
+    "brand": "Chevrolet",
+    "model": "Traverse",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/traverse-white.jpg"
+  },
+  {
+    "vin": "1G1EVRTCHA8JS32MB",
+    "stockNumber": "CH1007",
+    "brand": "Chevrolet",
+    "model": "Traverse",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/traverse-white.jpg"
+  },
+  {
+    "vin": "1G1XLRHDT66D6RWTZ",
+    "stockNumber": "CH1008",
+    "brand": "Chevrolet",
+    "model": "Equinox",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/equinox-white.jpg"
+  },
+  {
+    "vin": "1G1XLRTVN89ZBNHTH",
+    "stockNumber": "CH1009",
+    "brand": "Chevrolet",
+    "model": "Equinox",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/equinox-white.jpg"
+  },
+  {
+    "vin": "1G1XLR18054CC9KVY",
+    "stockNumber": "CH1010",
+    "brand": "Chevrolet",
+    "model": "Equinox",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/equinox-white.jpg"
+  },
+  {
+    "vin": "1G1BLRDNKUZD73FA6",
+    "stockNumber": "CH1011",
+    "brand": "Chevrolet",
+    "model": "Blazer",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/blazer-white.jpg"
+  },
+  {
+    "vin": "1G1BLRKMY17KY2VET",
+    "stockNumber": "CH1012",
+    "brand": "Chevrolet",
+    "model": "Blazer",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/chevrolet/blazer-white.jpg"
+  },
+  {
+    "vin": "1GTYKRDMCBKSV7JDG",
+    "stockNumber": "GM1013",
+    "brand": "Gmc",
+    "model": "Yukon",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/yukon-white.jpg"
+  },
+  {
+    "vin": "1GTYKRUREES5KM07Y",
+    "stockNumber": "GM1014",
+    "brand": "Gmc",
+    "model": "Yukon",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/yukon-white.jpg"
+  },
+  {
+    "vin": "1GTYKRRJCPRBTK9WS",
+    "stockNumber": "GM1015",
+    "brand": "Gmc",
+    "model": "Yukon",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/yukon-white.jpg"
+  },
+  {
+    "vin": "1GTSRRFTPER9HDJ0E",
+    "stockNumber": "GM1016",
+    "brand": "Gmc",
+    "model": "Sierra 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/sierra-1500-white.jpg"
+  },
+  {
+    "vin": "1GTSRRPTHXS4A65LA",
+    "stockNumber": "GM1017",
+    "brand": "Gmc",
+    "model": "Sierra 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/sierra-1500-white.jpg"
+  },
+  {
+    "vin": "1GTSRRXLB1UK8F3CH",
+    "stockNumber": "GM1018",
+    "brand": "Gmc",
+    "model": "Sierra 1500",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/sierra-1500-white.jpg"
+  },
+  {
+    "vin": "1GTACRKB328F69THP",
+    "stockNumber": "GM1019",
+    "brand": "Gmc",
+    "model": "Acadia",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/acadia-white.jpg"
+  },
+  {
+    "vin": "1GTACRVF45GXEG5T1",
+    "stockNumber": "GM1020",
+    "brand": "Gmc",
+    "model": "Acadia",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/acadia-white.jpg"
+  },
+  {
+    "vin": "1GTACR0CSX3WAW4LC",
+    "stockNumber": "GM1021",
+    "brand": "Gmc",
+    "model": "Acadia",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/acadia-white.jpg"
+  },
+  {
+    "vin": "1GTTRR8E1RG1MLS9X",
+    "stockNumber": "GM1022",
+    "brand": "Gmc",
+    "model": "Terrain",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/terrain-white.jpg"
+  },
+  {
+    "vin": "1GTTRR11VE7DLEW3C",
+    "stockNumber": "GM1023",
+    "brand": "Gmc",
+    "model": "Terrain",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/terrain-white.jpg"
+  },
+  {
+    "vin": "1GTTRR66Z5PWG4SWN",
+    "stockNumber": "GM1024",
+    "brand": "Gmc",
+    "model": "Terrain",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/gmc/terrain-white.jpg"
+  },
+  {
+    "vin": "1GYESR0KD8YFW1N0K",
+    "stockNumber": "CA1025",
+    "brand": "Cadillac",
+    "model": "Escalade",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/escalade-white.jpg"
+  },
+  {
+    "vin": "1GYESRAMZ2B9ZBENJ",
+    "stockNumber": "CA1026",
+    "brand": "Cadillac",
+    "model": "Escalade",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/escalade-white.jpg"
+  },
+  {
+    "vin": "1GYXTRTX92A3ZN3J7",
+    "stockNumber": "CA1027",
+    "brand": "Cadillac",
+    "model": "XT5",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt5-white.jpg"
+  },
+  {
+    "vin": "1GYXTRC787MM5DW55",
+    "stockNumber": "CA1028",
+    "brand": "Cadillac",
+    "model": "XT5",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt5-white.jpg"
+  },
+  {
+    "vin": "1GYXTRR1JZ9LZPFYP",
+    "stockNumber": "CA1029",
+    "brand": "Cadillac",
+    "model": "XT5",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt5-white.jpg"
+  },
+  {
+    "vin": "1GYX6RNDNURVAA7KY",
+    "stockNumber": "CA1030",
+    "brand": "Cadillac",
+    "model": "XT6",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt6-white.jpg"
+  },
+  {
+    "vin": "1GYX6R4AYM0FV0BSH",
+    "stockNumber": "CA1031",
+    "brand": "Cadillac",
+    "model": "XT6",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt6-white.jpg"
+  },
+  {
+    "vin": "1GYX6R8J2RFHWSB0B",
+    "stockNumber": "CA1032",
+    "brand": "Cadillac",
+    "model": "XT6",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/cadillac/xt6-white.jpg"
+  },
+  {
+    "vin": "5GAENRP36VBEJZEDW",
+    "stockNumber": "BU1033",
+    "brand": "Buick",
+    "model": "Enclave",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/enclave-white.jpg"
+  },
+  {
+    "vin": "5GAENR5AGNAWLVUVM",
+    "stockNumber": "BU1034",
+    "brand": "Buick",
+    "model": "Enclave",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/enclave-white.jpg"
+  },
+  {
+    "vin": "5GAEGR6PMUA71FPGV",
+    "stockNumber": "BU1035",
+    "brand": "Buick",
+    "model": "Encore GX",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/encore-gx-white.jpg"
+  },
+  {
+    "vin": "5GAEGR0NX3LT9RGCW",
+    "stockNumber": "BU1036",
+    "brand": "Buick",
+    "model": "Encore GX",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/encore-gx-white.jpg"
+  },
+  {
+    "vin": "5GAEVRUDE2GC5L7LT",
+    "stockNumber": "BU1037",
+    "brand": "Buick",
+    "model": "Envision",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/envision-white.jpg"
+  },
+  {
+    "vin": "5GAEVRWLJR55AE6Z7",
+    "stockNumber": "BU1038",
+    "brand": "Buick",
+    "model": "Envision",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/envision-white.jpg"
+  },
+  {
+    "vin": "5GAEVRLZT16Z3FW43",
+    "stockNumber": "BU1039",
+    "brand": "Buick",
+    "model": "Envision",
+    "year": 2024,
+    "status": "available",
+    "image": "/images/buick/envision-white.jpg"
+  }
+]
