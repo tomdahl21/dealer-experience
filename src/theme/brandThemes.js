@@ -2,7 +2,7 @@ export const brandThemes = {
   chevrolet: {
     palette: {
       primary: {
-        main: '#D1AD57',
+        main: '#1976D2',
         contrastText: '#FFFFFF',
       },
       secondary: {

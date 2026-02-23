@@ -3,6 +3,7 @@ import { dealService } from '../services/dealService';
 
 export const useDealStore = create((set, get) => ({
   deals: [],
+  allDeals: [],
   pendingDeals: [],
   isLoading: false,
   error: null,
@@ -24,6 +25,28 @@ export const useDealStore = create((set, get) => ({
       set({ pendingDeals, isLoading: false });
     } catch (error) {
       set({ error: error.message, isLoading: false });
+    }
+  },
+
+  fetchAllDeals: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const allDeals = await dealService.getAllDeals();
+      set({ allDeals, isLoading: false });
+    } catch (error) {
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  resetDealsToDemo: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const allDeals = await dealService.resetDealsToDemo();
+      set({ allDeals, pendingDeals: allDeals.filter(d => d.status === 'pending'), isLoading: false });
+      return { success: true };
+    } catch (error) {
+      set({ error: error.message, isLoading: false });
+      return { success: false, error: error.message };
     }
   },
 

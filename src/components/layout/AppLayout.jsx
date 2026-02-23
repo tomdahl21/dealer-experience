@@ -18,6 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import HistoryIcon from '@mui/icons-material/History';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import gmLogo from '../../img/gm-logo-white.svg';
 import sarahProfile from '../../img/profile-sarah.png';
 
@@ -51,6 +52,7 @@ export default function AppLayout() {
       ]
     : [
         { path: '/manager', label: 'Dashboard', icon: HomeIcon },
+        { path: '/manager/deals', label: 'Deals', icon: AssignmentTurnedInIcon },
         { path: '/manager/inventory', label: 'Inventory', icon: HistoryIcon },
         { path: '/manager/scan', label: 'Scan VIN', icon: CameraAltIcon },
       ];

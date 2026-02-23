@@ -13,6 +13,7 @@ import MyDealsPage from './pages/sales/MyDealsPage';
 import DashboardPage from './pages/manager/DashboardPage';
 import ApprovalsPage from './pages/manager/ApprovalsPage';
 import InventoryPage from './pages/manager/InventoryPage';
+import DealsPage from './pages/manager/DealsPage';
 
 // Layout
 import AppLayout from './components/layout/AppLayout';
@@ -73,6 +74,7 @@ function App() {
             }
           >
             <Route index element={<DashboardPage />} />
+            <Route path="deals" element={<DealsPage />} />
             <Route path="approvals" element={<ApprovalsPage />} />
             <Route path="inventory" element={<InventoryPage />} />
             <Route path="scan" element={<ScanPage />} />

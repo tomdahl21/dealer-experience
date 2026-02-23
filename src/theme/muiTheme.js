@@ -22,9 +22,9 @@ export const createAppTheme = (brand = 'chevrolet') => {
         dark: '#1B5E20',
       },
       warning: {
-        main: '#F57C00',
-        light: '#FF9800',
-        dark: '#E65100',
+        main: '#1976D2',
+        light: '#42A5F5',
+        dark: '#0D47A1',
       },
       error: {
         main: '#C62828',

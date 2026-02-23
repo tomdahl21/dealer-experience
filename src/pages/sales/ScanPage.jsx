@@ -135,17 +135,19 @@ export default function ScanPage() {
               // Clear timeout since VIN was detected
               if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
               }
               setVin(result.vin); // Set the main VIN field
               setDetectedVIN(result.vin);
+              setNoVINDetected(false);
               setDetectionInProgress(false);
               if (processingIntervalRef.current) {
                 clearInterval(processingIntervalRef.current);
+                processingIntervalRef.current = null;
               }
-              // Auto-submit after a brief delay to show detection success
-              setTimeout(() => {
-                handleAutoSubmitVIN(result.vin);
-              }, 800);
+
+              // Stop camera so user can review/edit VIN before lookup
+              await handleDisableCamera();
             }
           }
         }, 200); // Check every 200ms
@@ -239,17 +241,19 @@ export default function ScanPage() {
                 console.log('VIN found:', result.vin);
                 if (timeoutRef.current) {
                   clearTimeout(timeoutRef.current);
+                  timeoutRef.current = null;
                 }
                 setVin(result.vin); // Set the main VIN field
                 setDetectedVIN(result.vin);
+                setNoVINDetected(false);
                 setDetectionInProgress(false);
                 if (processingIntervalRef.current) {
                   clearInterval(processingIntervalRef.current);
+                  processingIntervalRef.current = null;
                 }
-                // Auto-submit after a brief delay
-                setTimeout(() => {
-                  handleAutoSubmitVIN(result.vin);
-                }, 800);
+
+                // Stop camera so user can review/edit VIN before lookup
+                await handleDisableCamera();
               }
             }
           }, 200);
@@ -267,26 +271,6 @@ export default function ScanPage() {
     } catch (err) {
       console.error('Error during try again:', err);
       cleanupInProgressRef.current = false;
-    }
-  };
-
-  const handleAutoSubmitVIN = async (vinToSubmit) => {
-    if (!vinToSubmit) return;
-    
-    setLoading(true);
-    setLocalError('');
-    setVehicleDetails(null);
-    try {
-      // Decode VIN using NHTSA API
-      const decodedVehicle = await vinDecoderService.decodeVin(vinToSubmit);
-      setVehicleDetails(decodedVehicle);
-      
-      // Navigate to vehicle detail page with decoded VIN data
-      navigate(`/vehicle/${vinToSubmit}`, { state: { vehicleDetails: decodedVehicle } });
-    } catch (err) {
-      setLocalError(err.message || 'Error decoding VIN');
-    } finally {
-      setLoading(false);
     }
   };
 

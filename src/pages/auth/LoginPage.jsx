@@ -39,7 +39,7 @@ export default function LoginPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #D1AD57 0%, #9FA8A7 100%)',
+        background: 'linear-gradient(135deg, #1976D2 0%, #64B5F6 100%)',
       }}
     >
       <Container maxWidth="sm">

@@ -121,24 +121,18 @@ class CameraService {
         return null;
       }
 
-      // Create a canvas and draw the current video frame
-      const canvas = document.createElement('canvas');
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      const cropCanvas = this.buildVinCropCanvas(video);
+      const enhancedCanvas = this.enhanceCanvasForOCR(cropCanvas);
 
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
-        return null;
-      }
-
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      // Run OCR on the canvas
-      const result = await Tesseract.recognize(canvas, 'eng', {
-        logger: () => {}, // Suppress logger output
+      // Run OCR on the enhanced crop with VIN-focused settings
+      const result = await Tesseract.recognize(enhancedCanvas, 'eng', {
+        logger: () => {},
+        tessedit_pageseg_mode: '7',
+        tessedit_char_whitelist: 'ABCDEFGHJKLMNPRSTUVWXYZ0123456789',
       });
 
-      const text = result.data.text.toUpperCase().replace(/\s+/g, '');
+      const rawText = result.data.text || '';
+      const text = rawText.toUpperCase();
 
       if (text && text.length > 0) {
         console.log('OCR detected text:', text);
@@ -149,14 +143,13 @@ class CameraService {
 
       if (extractedVIN) {
         console.log('VIN extracted:', extractedVIN);
-        return {
-          vin: extractedVIN,
-          rawText: result.data.text,
-          confidence: result.data.confidence,
-        };
       }
 
-      return null;
+      return {
+        vin: extractedVIN,
+        rawText,
+        confidence: result.data.confidence,
+      };
     } catch (err) {
       console.error('OCR processing error:', err);
       return null;
@@ -166,33 +159,93 @@ class CameraService {
   }
 
   extractVINFromText(text) {
-    // Look for a 17-character sequence that matches VIN pattern
-    const vinMatch = text.match(/[A-HJ-NPR-Z0-9]{17}/i);
+    const cleanedText = (text || '')
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, '');
 
-    if (vinMatch) {
-      const potentialVIN = vinMatch[0].toUpperCase();
-      if (VIN_PATTERN.test(potentialVIN)) {
-        return potentialVIN;
-      }
+    if (cleanedText.length < 17) {
+      return null;
     }
 
-    // If exact match not found, look for fuzzy matches of 16-18 chars
-    // and attempt cleanup
-    const fuzzyMatch = text.match(/[A-HJ-NPR-Z0-9]{16,18}/i);
-    if (fuzzyMatch) {
-      let candidate = fuzzyMatch[0].toUpperCase();
+    const normalizedText = cleanedText
+      .replace(/O/g, '0')
+      .replace(/Q/g, '0')
+      .replace(/I/g, '1');
 
-      // Try to clean up common OCR mistakes
-      candidate = candidate.replace(/O/g, '0'); // O to 0
-      candidate = candidate.replace(/I/g, '1'); // I to 1
-      candidate = candidate.slice(0, 17); // Trim to 17 chars
-
+    for (let index = 0; index <= normalizedText.length - 17; index += 1) {
+      const candidate = normalizedText.slice(index, index + 17);
       if (VIN_PATTERN.test(candidate)) {
         return candidate;
       }
     }
 
     return null;
+  }
+
+  buildVinCropCanvas(video) {
+    const sourceWidth = video.videoWidth;
+    const sourceHeight = video.videoHeight;
+
+    const cropWidth = Math.floor(sourceWidth * 0.9);
+    const cropHeight = Math.floor(sourceHeight * 0.35);
+    const cropX = Math.floor((sourceWidth - cropWidth) / 2);
+    const cropY = Math.floor((sourceHeight - cropHeight) / 2);
+
+    const cropCanvas = document.createElement('canvas');
+    cropCanvas.width = cropWidth;
+    cropCanvas.height = cropHeight;
+
+    const cropCtx = cropCanvas.getContext('2d');
+    if (!cropCtx) {
+      return cropCanvas;
+    }
+
+    cropCtx.drawImage(
+      video,
+      cropX,
+      cropY,
+      cropWidth,
+      cropHeight,
+      0,
+      0,
+      cropWidth,
+      cropHeight
+    );
+
+    return cropCanvas;
+  }
+
+  enhanceCanvasForOCR(inputCanvas) {
+    const scale = 2;
+    const outputCanvas = document.createElement('canvas');
+    outputCanvas.width = inputCanvas.width * scale;
+    outputCanvas.height = inputCanvas.height * scale;
+
+    const outputCtx = outputCanvas.getContext('2d');
+    if (!outputCtx) {
+      return inputCanvas;
+    }
+
+    outputCtx.drawImage(inputCanvas, 0, 0, outputCanvas.width, outputCanvas.height);
+
+    const imageData = outputCtx.getImageData(0, 0, outputCanvas.width, outputCanvas.height);
+    const pixels = imageData.data;
+
+    for (let index = 0; index < pixels.length; index += 4) {
+      const red = pixels[index];
+      const green = pixels[index + 1];
+      const blue = pixels[index + 2];
+
+      let grayscale = red * 0.299 + green * 0.587 + blue * 0.114;
+      grayscale = grayscale > 145 ? 255 : 0;
+
+      pixels[index] = grayscale;
+      pixels[index + 1] = grayscale;
+      pixels[index + 2] = grayscale;
+    }
+
+    outputCtx.putImageData(imageData, 0, 0);
+    return outputCanvas;
   }
 
   validateVIN(vin) {

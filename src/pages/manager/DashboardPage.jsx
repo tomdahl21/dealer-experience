@@ -137,14 +137,14 @@ const getMockDataForRange = (range) => {
     ],
     salesByDay: getSalesTrend(),
     inventoryByBrand: [
-      { brand: 'Chevrolet', count: 45, value: '#D1AD57' },
+      { brand: 'Chevrolet', count: 45, value: '#1976D2' },
       { brand: 'GMC', count: 28, value: '#C41230' },
       { brand: 'Cadillac', count: 12, value: '#000000' },
       { brand: 'Buick', count: 15, value: '#0066CC' },
     ],
     dealStatus: [
       { status: 'Closed', count: Math.round(156 * multiplier.deals / 4), color: '#4caf50' },
-      { status: 'Pending', count: 15, color: '#ff9800' },
+      { status: 'Pending', count: 15, color: '#1976D2' },
       { status: 'In Progress', count: 23, color: '#1565c0' },
     ],
     pendingApprovals: [
@@ -428,7 +428,7 @@ export default function DashboardPage() {
                                 </Typography>
                                 <Typography
                                   variant="h6"
-                                  sx={{ color: approval.margin >= 3000 ? '#4caf50' : '#ff9800' }}
+                                  sx={{ color: approval.margin >= 3000 ? '#4caf50' : '#1976D2' }}
                                   fontWeight={600}
                                 >
                                   ${approval.margin.toLocaleString()}
@@ -601,8 +601,8 @@ export default function DashboardPage() {
                               label={`${member.conversion}%`}
                               size="small"
                               sx={{
-                                bgcolor: member.conversion >= 65 ? '#e8f5e9' : '#fff3e0',
-                                color: member.conversion >= 65 ? '#2e7d32' : '#e65100',
+                                bgcolor: member.conversion >= 65 ? '#e8f5e9' : '#e3f2fd',
+                                color: member.conversion >= 65 ? '#2e7d32' : '#1565c0',
                                 fontWeight: 600,
                               }}
                             />
