@@ -79,14 +79,27 @@ function hashVin(vin) {
   return h;
 }
 
-const vehicles = vehiclesRaw.map((v) => {
+const getStudioImageUrl = (vehicle) => {
+  const query = encodeURIComponent(
+    `${vehicle.year} ${vehicle.brand} ${vehicle.model} studio white background car`
+  );
+  const signature = hashVin(vehicle.vin) % 1000;
+  return `https://source.unsplash.com/1600x900/?${query}&sig=${signature}`;
+};
+
+const HIDDEN_BRANDS = ['Cadillac', 'Buick'];
+
+const vehicles = vehiclesRaw
+  .filter((v) => !HIDDEN_BRANDS.includes(v.brand))
+  .map((v) => {
   const h = hashVin(v.vin);
   const [lo, hi] = msrpRanges[v.model] || [30000, 55000];
   const msrp = lo + Math.round(((h % 1000) / 1000) * (hi - lo));
   const daysOnLot = 1 + (h % 120);
   const color = colors[h % colors.length];
   const mileage = 5 + (h % 50);
-  return { ...v, msrp, daysOnLot, color, mileage };
+  const image = getStudioImageUrl(v);
+  return { ...v, msrp, daysOnLot, color, mileage, image };
 });
 
 // ── KPI helpers ──────────────────────────────────────────────────────────────
